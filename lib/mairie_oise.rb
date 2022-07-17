@@ -38,3 +38,4 @@ def create_final_array
   final_array = list_of_towns.zip(list_of_urls).map { |town, url| {town => get_townhall_email("http://annuaire-des-mairies.com/#{url}")} }
   return final_array
 end
+create_final_array

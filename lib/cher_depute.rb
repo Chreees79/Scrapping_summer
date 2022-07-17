@@ -15,6 +15,7 @@ def final_array
   list_first_name = []
   list_last_name = []
   list_url = []
+  final_array = []
 
   url_path.each do |depute|
   list_first_name << depute.text.split[1] 
@@ -22,16 +23,9 @@ def final_array
   list_url << depute['href']
 end
 
-  number_of_depute = list_first_name.length - 1
-  final_array = []
 
-  for i in 0..number_of_depute
-  mail = get_depute_email("https://www2.assemblee-nationale.fr/#{list_url[i]}")
-  final_array << {"first_name"=> list_first_name[i], "last_name"=> list_last_name[i], "email"=> mail}
-
-
+  (0..list_first_name.length - 1).each do |i|
+  final_array.push({"first_name"=> list_first_name[i], "last_name"=> list_last_name[i], "email"=> get_depute_email("https://www2.assemblee-nationale.fr/#{list_url[i]}")})
   end
-
   return final_array
 end
-
